@@ -69,7 +69,10 @@ def update_store(
 
 @app.get("/stores/{store_id}", response_model=schemas.StoreRead, tags=["stores"])
 def read_store(store_id: int, db: Session = Depends(get_db)):
-    return crud.get_store(db=db, store_id=store_id)
+    db_store = crud.get_store(db=db, store_id=store_id)
+    if not db_store:
+        raise HTTPException(status_code=404, detail="Store not found")
+    return db_store
 
 
 @app.delete(
@@ -108,7 +111,10 @@ def update_item(item_id: int, item: schemas.ItemCreate, db: Session = Depends(ge
 
 @app.get("/items/{item_id}", response_model=schemas.ItemRead, tags=["items"])
 def read_item(item_id: int, db: Session = Depends(get_db)):
-    return crud.get_item(db=db, item_id=item_id)
+    db_item = crud.get_item(db=db, item_id=item_id)
+    if not db_item:
+        raise HTTPException(status_code=404, detail="Item not found")
+    return db_item
 
 
 @app.delete(
@@ -147,7 +153,10 @@ def update_tag(tag_id: int, tag: schemas.TagCreate, db: Session = Depends(get_db
 
 @app.get("/tags/{tag_id}", response_model=schemas.TagRead, tags=["tags"])
 def read_tag(tag_id: int, db: Session = Depends(get_db)):
-    return crud.get_tag(db=db, tag_id=tag_id)
+    db_tag = crud.get_tag(db=db, tag_id=tag_id)
+    if not db_tag:
+        raise HTTPException(status_code=404, detail="Tag not found")
+    return db_tag
 
 
 @app.delete(
