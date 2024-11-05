@@ -1,0 +1,75 @@
+
+###
+GET http://127.0.0.1:8000/stores
+
+###
+GET http://127.0.0.1:8000/items
+
+###
+GET http://127.0.0.1:8000/tags
+
+
+###
+POST http://127.0.0.1:8000/stores
+content-type: application/json
+
+{
+    "name": "store1"
+}
+
+###
+GET http://127.0.0.1:8000/stores/1
+
+
+###
+POST http://127.0.0.1:8000/items
+content-type: application/json
+
+{
+    "name": "item1"
+}
+
+###
+GET http://127.0.0.1:8000/items/1
+
+
+###
+POST http://127.0.0.1:8000/tags
+content-type: application/json
+
+{
+    "name": "tag1"
+}
+
+###
+GET http://127.0.0.1:8000/tags/1
+
+
+###
+POST  http://127.0.0.1:8000/stores/1/items/1
+content-type: application/json
+
+{}
+
+###
+POST  http://127.0.0.1:8000/items/1/tags/2
+content-type: application/json
+
+{}
+
+
+###
+DELETE  http://127.0.0.1:8000/stores/1/items/1
+
+###
+DELETE  http://127.0.0.1:8000/items/1/tags/1
+
+
+###
+DELETE http://127.0.0.1:8000/stores/1
+
+###
+DELETE http://127.0.0.1:8000/items/1
+
+###
+DELETE http://127.0.0.1:8000/tags/1
