@@ -32,6 +32,17 @@ content-type: application/json
 ###
 GET http://127.0.0.1:8000/items/1
 
+###
+PUT http://127.0.0.1:8000/items/1
+content-type: application/json
+
+{
+    "name": "item1 updated",
+    "description": "item1 description updated",
+    "price": 10.0,
+    "quantity": 10
+}
+
 
 ###
 POST http://127.0.0.1:8000/tags

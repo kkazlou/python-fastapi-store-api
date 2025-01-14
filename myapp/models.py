@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Table, ForeignKey
+from sqlalchemy import Column, Integer, Float, String, Table, ForeignKey
 from sqlalchemy.orm import relationship
 from myapp.database import Base
 
@@ -30,6 +30,9 @@ class Item(Base):
     __tablename__ = "items"
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, index=True, unique=True)
+    description = Column(String)
+    price = Column(Float)
+    quantity = Column(Integer)
     stores = relationship(
         "Store", secondary=store_item_association, back_populates="items"
     )

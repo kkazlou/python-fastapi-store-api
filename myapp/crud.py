@@ -103,10 +103,13 @@ def update_store(db: Session, store_id: int, store: schemas.StoreCreate):
     return db_store
 
 
-def update_item(db: Session, item_id: int, item: schemas.ItemCreate):
+def update_item(db: Session, item_id: int, item: schemas.ItemUpdate):
     db_item = db.query(models.Item).filter(models.Item.id == item_id).first()
     if db_item:
-        db_item.name = item.name
+        item_data = item.model_dump(exclude_unset=True)
+        for key, value in item_data.items():
+            setattr(db_item, key, value)
+        db.add(db_item)
         db.commit()
         db.refresh(db_item)
     return db_item

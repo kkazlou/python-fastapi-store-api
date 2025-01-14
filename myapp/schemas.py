@@ -11,6 +11,16 @@ class StoreCreate(BaseModel):
 
 class ItemCreate(BaseModel):
     name: str
+    description: str | None = None
+    price: float | None = None
+    quantity: int | None = None
+
+
+class ItemUpdate(BaseModel):
+    name: str | None = None
+    description: str | None = None
+    price: float | None = None
+    quantity: int | None = None
 
 
 class TagCreate(BaseModel):
@@ -53,6 +63,9 @@ class StoreRead(BaseModel):
 class ItemRead(BaseModel):
     id: int
     name: str
+    description: str | None = None
+    price: float | None = None
+    quantity: int | None = None
     stores: List[StoreSummary] = []
     tags: List[TagSummary] = []
 
